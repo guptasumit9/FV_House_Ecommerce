@@ -24,7 +24,7 @@
     <div class="form-group">
       <label for="description">Product description  *:</label>
       <input type="text" class="form-control" id="file" placeholder="
-choose file" name="description" required>
+Product description" name="description" required>
     </div>
 
      <!-- 3 -->
@@ -52,7 +52,7 @@ choose file" name="description" required>
 
      <!-- 6 -->
      <div class="form-group">
-      <label for="file">profile pic:</label>
+      <label for="file">Prodect Img:</label>
       <input type="file" class="form-control" id="file" placeholder="
 choose file" name="file" required>
     </div>
@@ -85,34 +85,36 @@ include 'conn.php';
 
 
 if (isset($_POST['submit'])) {
-  $name=$_POST['name'];
-  $description=$_POST['description'];
-  $quantity=$_POST['quantity'];
-  $price=$_POST['price'];
-  $m_price=$_POST['m_price'];
-  $file=$_FILES['file'];
-  $page=$_POST['page'];
+  $Name=$_POST['name'];
+  $Description=$_POST['description'];
+  $Quantity=$_POST['quantity'];
+  $Price=$_POST['price'];
+  $M_Price=$_POST['m_price'];
+  $File=$_FILES['file'];
+  $Page=$_POST['page'];
 
-  // print_r($name);
+  // print_r($Name);
   
 
-$filename=$file['name'];
-$fileerror=$file['error'];
-$filetmp=$file['tmp_name'];
+$Filename=$File['name'];
+$Fileerror=$File['error'];
+$Filetmp=$File['tmp_name'];
+// print_r($Filename);
 
  
-$fileext=explode('.',$filename);
-$filecheck=strtolower(end($fileext));
+$Fileext=explode('.',$Filename);//string divided by two part
+$Filecheck=strtolower(end($Fileext));//this line string capital to lower convarted and give last values
  // print_r($filecheck);
-$fileextstored=array('png','jpg','jpeg');
+$Fileextstored=array('png','jpg','jpeg');
  
-if(in_array($filecheck,$fileextstored)){
-    $destinationfile='fv_img/'.$filename;
-    move_uploaded_file($filetmp,$destinationfile);
+ if(in_array($Filecheck,$Fileextstored)){
+    $Destinationfile='IMG/'.$Filename;
+    move_uploaded_file($Filetmp,$Destinationfile);
 
-$sql = "EXEC proinsertprodect '$name','$description','$quantity',$price,$m_price,'$destinationfile',$page";
-$result = sqlsrv_query($conn, $sql);
 
+$ProdectInsert = "insert into  product (Name,Descriptoin,Quantity,Price,M_Price,Img_file,Page)values('$Name','$Description','$Quantity','$Price','$M_Price','$Destinationfile','$Page')" ;
+$result =mysqli_query($con,$ProdectInsert);
+ 
 if (!$result) {
     // echo 'Your code is fail.';
   ?>
@@ -125,6 +127,8 @@ else {
     ?>
   <script>
     alert("your prodect are insert");
+    location.replace("Insert_Update_Delete_Prodect.php")
+     
   </script>
   <?php
 }
@@ -136,6 +140,7 @@ else {
  
 
 }
-error_reporting(0);
+// error_reporting(0);
+header("conn.php");
 
   ?>
