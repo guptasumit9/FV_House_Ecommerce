@@ -1,0 +1,121 @@
+  <!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+     <?php 
+include 'link.php';
+ ?>
+
+    
+    <title>Hotel_used_Fv page</title>
+  </head>
+  <body>
+
+<!-- ---------------------------------nev bar--------------------------- -->
+   <?php 
+include 'nev.php';
+ ?>
+<!-- ---------------------nev bar end------------------------- -->
+ 
+
+
+
+<style>
+  .mcart{
+      margin-top: 20px;
+
+    
+  }
+  .cart{
+    margin-top: 220px;
+     
+ 
+  }
+  .cart img{
+    height: 200px;
+    width: 100%;
+    margin-top: 10px;
+
+  }
+  .text p{
+    width: 60%;
+  height: 40%;
+
+  }
+  .text button{
+     margin-top: -55px;
+  float: right;
+  width: 40%;
+  padding-left: 0px;
+  border-radius: 10px;
+
+  }
+
+   
+</style>
+
+
+ <div class="mcart container">
+  <div class="row">
+<?php
+
+include 'conn.php';
+
+$Select="select * from product where Page=8 ORDER BY Name";
+$qurey = mysqli_query($con, $Select);
+$Row= mysqli_num_rows($qurey);
+
+while ($b=mysqli_fetch_array($qurey)) {
+   ?>
+ 
+ 
+
+
+
+ 
+    <div class="cart col-sm-3">
+       <img name="img"> src="../fv_admin/<?php echo $b['Img_file']; ?>" alt="sumit"><!--  <?php echo $b['Img_file']; ?> -->
+       <!--  <img src="fv_admin/fv_img/Onion.jpg">   -->
+       <h4 name='name'> <?php echo $b['Name']; ?></h4>
+        <!-- <span style="font-size: 15px;"> (<?php echo $b['Descriptoin']; ?>)</span> -->
+       
+       <h6 name='cuantity'><?php echo $b['Quantity']; ?></h6>
+       <div class="text">
+           <p style="font-size: 20px;"><b><?php echo $b['Price']; ?></b>
+          <span style="text-decoration: line-through;padding-left: 2px;color: #E44236;font-size: 15px ;"><?php echo $b['M_Price']; ?>₹</span></p>
+         <button type="button" class="btn btn-success" name="cart"  >Add to Cart</button> 
+       </div>
+    </div>
+     
+<?php  
+}
+
+?>
+<?php
+ 
+if (isset($_POST['cart'])) {
+  $name=$_POST['name'];
+  $img=$_POST['img'];
+  $cuantity=$_POST['cuantity'];
+  $name=$_POST['name'];
+}
+ 
+?>
+
+  </div>
+</div>
+
+
+ 
+
+
+
+
+
+<!-- ----------------------------------futar----------------------------------------- -->
+<?php 
+include 'futer.php';
+ ?>
+ <!-- -------------------------futar end---------------------------- -->
+ </body>
+</html>

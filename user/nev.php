@@ -45,10 +45,32 @@ include 'link.php';
     </div>
         <!-- text-overflow: ellipsis; white-space: nowrap; overflow: hidden; -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style=" height: auto; width:650px; border: 2px solid green; border-radius: 10px; ">
+         <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search" style=" height: auto; width:650px; border: 2px solid green; border-radius: 10px; ">
         
          
       </ul>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script>
+if (annyang) {
+  // Let's define our first command. First the text we expect, and then the function it should call
+  var commands = {
+    'Name *tag': function(variable) {
+      let search=document.getElementById(search);
+      search.value=variable;
+    }
+    // 'confirm password *tag': function(variable) {
+    //   let cpwd = document.getElementById("cpwd");
+    //   cpwd.value = variable;
+    // },
+  };
+
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+}
+</script>
       <form>
         <a href="index.php">  
         <button type="button" class="btn btn-outline-success active">Home</button></a>

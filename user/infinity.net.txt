@@ -1,0 +1,11 @@
+Website for fvhoush.epizy.com
+Your account has been created with username epiz_32633271!
+password=sumitgupta9082
+
+
+MySQL DB Name	MySQL User Name	MySQL Password	MySQL Host Name	PHPMyAdmin
+epiz_32633271_fv_housh	epiz_32633271	(Your vPanel Password)	sql304.epizy.com
+
+
+MySQL DB Name	MySQL User Name	MySQL Password	MySQL Host Name	PHPMyAdmin
+epiz_32634095_fv_housh	epiz_32634095	(Your vPanel Password)	sql301.epizy.com

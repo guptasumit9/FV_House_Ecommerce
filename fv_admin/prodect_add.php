@@ -112,7 +112,7 @@ $Fileextstored=array('png','jpg','jpeg');
     move_uploaded_file($Filetmp,$Destinationfile);
 
 
-$ProdectInsert = "insert into  product (Name,Descriptoin,Quantity,Price,M_Price,Img_file,Page)values('$Name','$Description','$Quantity','$Price','$M_Price','$Destinationfile','$Page')" ;
+$ProdectInsert = "insert into  product (Name,Descriptoin,Quantity,Price,M_Price,Img_file,Page)values('$Name','$Description','$Quantity','$Price','$M_Price','$Filename','$Page')" ;
 $result =mysqli_query($con,$ProdectInsert);
  
 if (!$result) {

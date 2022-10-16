@@ -116,18 +116,21 @@ function phpAlert($message) {
     // Display the alert box 
     echo "<script>alert('$message');</script>";
 }
+
 include 'conn.php';
 if (isset($_POST['Submit'])) {
-  $email=$_POST['email'];
-  $pass=$_POST['pass'];
+  $email=mysqli_real_escape_string($con,$_POST['email']);
+  $pass=mysqli_real_escape_string($con,$_POST['pass']);
    
 $Loginquery="select * from registration where Email='$email' AND Password='$pass'";
+//echo "$Loginquery";
 $Lquery=mysqli_query($con,$Loginquery);
 $Loginnquery = mysqli_num_rows($Lquery);
 if ($Loginnquery>0) {
   $fetch=mysqli_fetch_assoc($Lquery);
   $_SESSION['Username']=$fetch['Name'];
-  // echo $_SESSION['Username'];
+  $_SESSION['id']=$fetch['id'];
+   // echo $_SESSION['id'];
   ?>
       <script>
         location.replace("index.php")

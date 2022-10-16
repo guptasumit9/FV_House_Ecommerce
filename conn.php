@@ -10,5 +10,9 @@ else{
      echo "Connection could not be established.<br";
     die(print_r( sqlsrv_errors (), true));
 }
-
+function phpAlert($message) {
+      
+    // Display the alert box 
+    echo "<script>alert('$message');</script>";
+}
 ?>
